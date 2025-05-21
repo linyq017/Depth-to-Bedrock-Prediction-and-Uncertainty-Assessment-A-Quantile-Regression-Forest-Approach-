@@ -24,7 +24,7 @@ Comprehensive visualization and reporting of both predictions and uncertainty
 ## Project Structure
 
 ```
-DTBPrediction/
+DTBMapping/
 │
 ├── src/                           # Source modules
 │   ├── __init__.py                # Makes src a proper package
