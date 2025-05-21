@@ -44,12 +44,6 @@ if __name__ == '__main__':
     # This assumes the first 6 columns are consistent across runs/subsets
     # Make sure these columns don't change based on subsampling.
     # If 'DJUP', 'N', 'E', etc. are in the first 6, and 'DJUP' is the target,
-    # maybe copy the original test data excluding DJUP, or just specific identifier columns.
-    # Let's copy the original test data's index and coordinates if available.
-    # Assuming 'N' and 'E' are good identifiers.
-    # If your test file structure is consistent, copying the first 6 columns *of the original file* might be what you intended.
-    # Let's rely on the index matching between test_data_subsetted and original_test_data.
-    # The index should be preserved if subset_columns just selects columns.
     base_test_info = original_test_data.iloc[:, :6].copy()
 
 
@@ -62,7 +56,7 @@ if __name__ == '__main__':
 
         # Hyperparameter optimization using the subsampled data
         # We run fewer trials for smaller subsamples as hyperparameter tuning precision might be lower
-        n_optuna_trials = 2 # Adjust based on available resources and time
+        n_optuna_trials = 20 # Adjust based on available resources and time
         study = run_optimization(X_train_sub, y_train_sub, n_trials=n_optuna_trials, output_path=sub_folder, frac=frac)
         best_params = study.best_params
         print(f"Best hyperparameters for fraction {frac}: {best_params}")
